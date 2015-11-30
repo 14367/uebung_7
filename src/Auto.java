@@ -1,29 +1,36 @@
 public class Auto {
-	public double kilometerstand;
+	private double kilometerstand;
 
-	public double tankinhalt;
+	private double tankinhalt;
 
-	public double maxTankVolumen;
+	private double maxTankVolumen;
 
-	public double verbrauchProKm;
+	private double verbrauchProKm;
 
-	public double profiltiefeReifen;
+	private double profiltiefeReifen;
 
-	public double profiltiefeNeuerReifen = 0.8;
+	private double profiltiefeNeuerReifen = 0.8;
 
-	public double minimalErlaubteProfiltiefe = 0.3;
+	private double minimalErlaubteProfiltiefe = 0.3;
 
-	public double reifenabnutzungProKm = 0.00025;
+	private double reifenabnutzungProKm = 0.00025;
 
-	public String wagenname;
+	private String wagenname;
 
-	public Person fahrer;
+	private Person fahrer;
+	
+	private final int fahrgestellnummer;
+	
+	private static int letzteFGN =0;
 
 	public Auto(double maxTankVolumen, double verbrauchProKm, String wagenname) {
 		this.maxTankVolumen = maxTankVolumen;
 		this.verbrauchProKm = verbrauchProKm;
 		this.wagenname = wagenname;
-
+		fahrgestellnummer=letzteFGN+1;
+		letzteFGN = fahrgestellnummer;
+		
+		
 		// gleich volltanken und frische Reifen drauf
 		tanken();
 		wechsleReifen();
@@ -62,7 +69,7 @@ public class Auto {
 
 	}
 
-	public double bestimmeReichweite() {
+	private double bestimmeReichweite() {
 		// Reichweite des Tanks bestimmen
 		double reichweiteTank = tankinhalt / getBenzinverbrauchProKm();
 
@@ -78,7 +85,7 @@ public class Auto {
 		}
 	}
 
-	public double getReifenAbnutzungProKm() {
+	private double getReifenAbnutzungProKm() {
 		// Diese Methode bestimmt, wie stark die Reifenabnutzung pro Km
 		// waere, wenn das Auto jetzt fahren wuerde
 		if (!isFahrerOk()) {
@@ -93,7 +100,7 @@ public class Auto {
 		return reifenabnutzungProKm;
 	}
 
-	public double getBenzinverbrauchProKm() {
+	private double getBenzinverbrauchProKm() {
 		// Diese Methode bestimmt, wie stark der Benzinverbrauch pro Km
 		// waere, wenn das Auto jetzt fahren wuerde
 		if (!isFahrerOk()) {
@@ -108,7 +115,7 @@ public class Auto {
 		return verbrauchProKm;
 	}
 
-	public boolean isFahrerOk() {
+	private boolean isFahrerOk() {
 		// Ohne Fahrer laeuft hier gar nichts
 		if (fahrer == null) {
 			return false;

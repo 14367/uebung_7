@@ -15,6 +15,7 @@ public class TausendMinutenRennen {
 		autos[2].setFahrer(new Person("Abe Simpson", 1914));
 		autos[3].setFahrer(new Person("Otto", 1988));
 
+		
 		for (int i = 0; i < 1000; i++) {
 
 			System.out.println();
